@@ -1,0 +1,7 @@
+# folder settings
+WebProject.iml
+.idea/
+target/
+
+# class files
+out/
