@@ -3,6 +3,7 @@ package com.kuleshov.Entity;
 import java.util.Date;
 
 public class Customer {
+
     private String firstName;
     private String lastName;
     private Date age;
@@ -74,5 +75,51 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        if (phone != customer.phone) return false;
+        if (!address.equals(customer.address)) return false;
+        if (!age.equals(customer.age)) return false;
+        if (!city.equals(customer.city)) return false;
+        if (!email.equals(customer.email)) return false;
+        if (!firstName.equals(customer.firstName)) return false;
+        if (!lastName.equals(customer.lastName)) return false;
+        if (!password.equals(customer.password)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + age.hashCode();
+        result = 31 * result + phone;
+        result = 31 * result + email.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

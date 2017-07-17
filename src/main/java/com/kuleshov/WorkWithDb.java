@@ -1,9 +1,11 @@
 package com.kuleshov;
 
+        import com.kuleshov.Entity.Employee;
+
         import java.sql.*;
 
 public class WorkWithDb {
-    public static final String URL = "jdbc:mysql://localhost:3306/bank";
+    public static final String URL = "jdbc:mysql://localhost:3306/eshop_new2";
     public static final String USERNAME = "root";
     public static final String USERPASSWORD = "admin111";
 
@@ -39,10 +41,12 @@ public class WorkWithDb {
 //            System.out.println(status);
 
 //          Read
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM bank.customer;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM eshop_new2.employees;");
             while (resultSet.next()) {
-                int id = resultSet.getInt("cust_id");
-                System.out.println(id);
+                Employee employee = new Employee();
+                employee.setName(resultSet.getString("EmployeeName"));
+                employee.setPassword(resultSet.getString("EmployeePassword"));
+                System.out.println(employee);
             }
 
 ////          Update

@@ -55,4 +55,44 @@ public class Product {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (price != product.price) return false;
+        if (quantityInStock != product.quantityInStock) return false;
+        if (!brand.equals(product.brand)) return false;
+        if (!description.equals(product.description)) return false;
+        if (!productId.equals(product.productId)) return false;
+        if (!productName.equals(product.productName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = productId.hashCode();
+        result = 31 * result + productName.hashCode();
+        result = 31 * result + quantityInStock;
+        result = 31 * result + price;
+        result = 31 * result + description.hashCode();
+        result = 31 * result + brand.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", quantityInStock=" + quantityInStock +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                '}';
+    }
 }

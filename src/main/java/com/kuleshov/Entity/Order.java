@@ -102,4 +102,59 @@ public class Order {
     public void setShipPhone(int shipPhone) {
         this.shipPhone = shipPhone;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (Float.compare(order.orderPrice, orderPrice) != 0) return false;
+        if (shipPhone != order.shipPhone) return false;
+        if (!delivery.equals(order.delivery)) return false;
+        if (!orderDate.equals(order.orderDate)) return false;
+        if (!paymentMethod.equals(order.paymentMethod)) return false;
+        if (!shipAddress.equals(order.shipAddress)) return false;
+        if (!shipCity.equals(order.shipCity)) return false;
+        if (!shipDate.equals(order.shipDate)) return false;
+        if (!shipEmail.equals(order.shipEmail)) return false;
+        if (!shipFirstName.equals(order.shipFirstName)) return false;
+        if (!shipLastName.equals(order.shipLastName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orderDate.hashCode();
+        result = 31 * result + shipDate.hashCode();
+        result = 31 * result + paymentMethod.hashCode();
+        result = 31 * result + delivery.hashCode();
+        result = 31 * result + (orderPrice != +0.0f ? Float.floatToIntBits(orderPrice) : 0);
+        result = 31 * result + shipFirstName.hashCode();
+        result = 31 * result + shipLastName.hashCode();
+        result = 31 * result + shipCity.hashCode();
+        result = 31 * result + shipAddress.hashCode();
+        result = 31 * result + shipEmail.hashCode();
+        result = 31 * result + shipPhone;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderDate=" + orderDate +
+                ", shipDate=" + shipDate +
+                ", paymentMethod=" + paymentMethod +
+                ", delivery=" + delivery +
+                ", orderPrice=" + orderPrice +
+                ", shipFirstName='" + shipFirstName + '\'' +
+                ", shipLastName='" + shipLastName + '\'' +
+                ", shipCity='" + shipCity + '\'' +
+                ", shipAddress='" + shipAddress + '\'' +
+                ", shipEmail='" + shipEmail + '\'' +
+                ", shipPhone=" + shipPhone +
+                '}';
+    }
 }
