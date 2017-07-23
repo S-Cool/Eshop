@@ -1,4 +1,4 @@
-package com.kuleshov.Servlets;
+package com.kuleshov.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +11,13 @@ public class MyServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("text/html");
         resp.setStatus(HttpServletResponse.SC_OK);
+        String info = req.getHeader("User-agent");
+
 
         PrintWriter out = resp.getWriter();
+        out.write(info);
         out.write("<h1>Success!</h1>");
         out.flush();
         out.close();

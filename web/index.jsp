@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ page errorPage="Error.jsp" %>
+<%@ page errorPage="error.jsp" %>
 
 
 <html>
@@ -10,7 +10,7 @@
 <body>
 <%@include file="header.jsp" %>
 <h1>Authorization:</h1>
-<a href="myServlet">Link servlet!</a>
+<a href="/myServlet/">Link servlet!</a><br />
 <form action="page.jsp" method="get">
     <input type="text" name="login">
     <input type="password" name="password">

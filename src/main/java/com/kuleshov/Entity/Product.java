@@ -1,4 +1,4 @@
-package com.kuleshov.Entity;
+package com.kuleshov.entity;
 
 public class Product {
     private String productId;

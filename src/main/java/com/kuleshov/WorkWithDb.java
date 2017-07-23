@@ -1,6 +1,6 @@
 package com.kuleshov;
 
-import com.kuleshov.Entity.Employee;
+import com.kuleshov.entity.Employee;
 
 import java.sql.*;
 
