@@ -5,94 +5,74 @@ import com.kuleshov.util.JDBCFactory;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 
 public class CategoryDAOTest extends TestCase {
 
-    @Before
-    public void runT() {
-        JDBCFactory jdbcFactory = new JDBCFactory();
-        jdbcFactory.getConnection();
-
-    }
+    CategoryDAO categoryDAO = new CategoryDAO();
+    Category inputValue = new Category();
 
     public void testSave() throws Exception {
-        CategoryDAO categoryDAO = new CategoryDAO();
-        Category inputValue = new Category();
-
+        //given
         inputValue.setCategoryId(1);
         inputValue.setCategoryName("Tech");
         inputValue.setCategoryDescription("Tech description");
 
-        categoryDAO.save(inputValue);
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        boolean delete = categoryDAO.delete("Tech");
 
-        Category expectedOne = categoryDAO.find(1);
-        Category expectedTwo = categoryDAO.find("Tech");
-
-        Assert.assertEquals(inputValue, expectedOne);
-        Assert.assertEquals(inputValue, expectedTwo);
-
-        categoryDAO.delete("Tech");
-
-        assertNull(categoryDAO.find("Tech"));
-
+        //then
+        Assert.assertTrue(save);
+        Assert.assertTrue(delete);
     }
 
-    public void testDelete() throws Exception {
-        CategoryDAO categoryDAO = new CategoryDAO();
-        Category inputValue = new Category();
-
+    public void testDeleteName() throws Exception {
+        //given
         inputValue.setCategoryId(2);
         inputValue.setCategoryName("Refrigerator");
         inputValue.setCategoryDescription("Refrigerator description");
 
-        categoryDAO.save(inputValue);
-        Category expectedValue = categoryDAO.find("Refrigerator");
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        boolean delete = categoryDAO.delete("Refrigerator");
 
-        assertEquals(inputValue, expectedValue);
-
-        categoryDAO.delete("Refrigerator");
-
-        assertNull(categoryDAO.find("Refrigerator"));
-
+        //then
+        Assert.assertTrue(save);
+        Assert.assertTrue(delete);
     }
 
     public void testFindName() throws Exception {
-
-        CategoryDAO categoryDAO = new CategoryDAO();
-        Category inputValue = new Category();
-
+        //given
         inputValue.setCategoryId(3);
         inputValue.setCategoryName("Microwave");
         inputValue.setCategoryDescription("Microwave description");
 
-        categoryDAO.save(inputValue);
-        Category expectedValue = categoryDAO.find("Microwave");
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        Category find = categoryDAO.find("Microwave");
+        boolean delete = categoryDAO.delete("Microwave");
 
-        assertEquals(inputValue, expectedValue);
-
-        categoryDAO.delete("Microwave");
-
-        assertNull(categoryDAO.find("Microwave"));
-
+        //then
+        Assert.assertTrue(save);
+        Assert.assertEquals(inputValue, find);
+        Assert.assertTrue(delete);
     }
 
     public void testFindId() throws Exception {
-
-        CategoryDAO categoryDAO = new CategoryDAO();
-        Category inputValue = new Category();
-
+        //given
         inputValue.setCategoryId(4);
         inputValue.setCategoryName("Kettle");
         inputValue.setCategoryDescription("Kettle description");
 
-        categoryDAO.save(inputValue);
-        Category expectedValue = categoryDAO.find(4);
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        Category find = categoryDAO.find(4);
+        boolean delete = categoryDAO.delete("Kettle");
 
-        assertEquals(inputValue, expectedValue);
-
-        categoryDAO.delete("Kettle");
-
-        assertNull(categoryDAO.find("Kettle"));
-
+        //then
+        Assert.assertTrue(save);
+        Assert.assertEquals(inputValue, find);
+        Assert.assertTrue(delete);
     }
 }
