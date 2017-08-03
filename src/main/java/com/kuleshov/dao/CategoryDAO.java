@@ -14,6 +14,7 @@ public class CategoryDAO extends AbstractDAO {
     private String SELECT_BY_ID_QUERY = "SELECT CategoryID, CategoryName, CategoryDescription FROM category WHERE CategoryID=?";
     private String SELECT_BY_NAME_QUERY = "SELECT CategoryID, CategoryName, CategoryDescription FROM category WHERE CategoryName=?";
     private String DELETE_QUERY = "DELETE FROM eshop.category  WHERE CategoryName=?";
+    private String UPDATE_QUERY = "UPDATE eshop.category SET CategoryName=?, CategoryDescription=? WHERE CategoryID=?";
 
     public boolean save(Category category) {
         try (PreparedStatement st = connection.prepareStatement(SAVE_QUERY)) {
@@ -76,6 +77,21 @@ public class CategoryDAO extends AbstractDAO {
         } catch (SQLException e) {
             logger.error("Can't find category with name: " + name);
             return null;
+        }
+    }
+
+    public boolean update(Category category) {
+        try (PreparedStatement st = connection.prepareStatement(UPDATE_QUERY)) {
+
+            st.setInt(3, category.getCategoryId());
+            st.setString(1, category.getCategoryName());
+            st.setString(2, category.getCategoryDescription());
+
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.error("Can't update category with ID: " + category.getCategoryId());
+            throw new IllegalRequestException("");
         }
     }
 }

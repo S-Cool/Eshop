@@ -11,6 +11,14 @@ public class CategoryDAOTest extends TestCase {
 
     CategoryDAO categoryDAO = new CategoryDAO();
     Category inputValue = new Category();
+    Category updateValue = new Category();
+
+    @Before
+    public void runT() {
+        JDBCFactory jdbcFactory = new JDBCFactory();
+        jdbcFactory.getConnection();
+
+    }
 
     public void testSave() throws Exception {
         //given
@@ -73,6 +81,27 @@ public class CategoryDAOTest extends TestCase {
         //then
         Assert.assertTrue(save);
         Assert.assertEquals(inputValue, find);
+        Assert.assertTrue(delete);
+    }
+
+    public void testUpdate() throws Exception {
+        //given
+        inputValue.setCategoryId(1);
+        inputValue.setCategoryName("Tech");
+        inputValue.setCategoryDescription("Tech description");
+
+        inputValue.setCategoryId(1);
+        inputValue.setCategoryName("New");
+        inputValue.setCategoryDescription("New description");
+
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        boolean update = categoryDAO.update(updateValue);
+        boolean delete = categoryDAO.delete("New");
+
+        //then
+        Assert.assertTrue(save);
+        Assert.assertTrue(update);
         Assert.assertTrue(delete);
     }
 }
