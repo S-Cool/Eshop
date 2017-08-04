@@ -5,7 +5,6 @@ import com.kuleshov.util.JDBCFactory;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 
 public class CategoryDAOTest extends TestCase {
 
@@ -58,7 +57,7 @@ public class CategoryDAOTest extends TestCase {
 
         //when
         boolean save = categoryDAO.save(inputValue);
-        Category find = categoryDAO.find("Microwave");
+        Category find = categoryDAO.findName("Microwave");
         boolean delete = categoryDAO.delete("Microwave");
 
         //then
@@ -75,7 +74,7 @@ public class CategoryDAOTest extends TestCase {
 
         //when
         boolean save = categoryDAO.save(inputValue);
-        Category find = categoryDAO.find(4);
+        Category find = categoryDAO.findId(4);
         boolean delete = categoryDAO.delete("Kettle");
 
         //then
@@ -90,9 +89,9 @@ public class CategoryDAOTest extends TestCase {
         inputValue.setCategoryName("Tech");
         inputValue.setCategoryDescription("Tech description");
 
-        inputValue.setCategoryId(1);
-        inputValue.setCategoryName("New");
-        inputValue.setCategoryDescription("New description");
+        updateValue.setCategoryId(1);
+        updateValue.setCategoryName("New");
+        updateValue.setCategoryDescription("New description");
 
         //when
         boolean save = categoryDAO.save(inputValue);

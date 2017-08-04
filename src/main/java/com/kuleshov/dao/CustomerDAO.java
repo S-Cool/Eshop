@@ -1,6 +1,5 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Category;
 import com.kuleshov.entity.Customer;
 import com.kuleshov.exception.IllegalRequestException;
 import org.apache.log4j.Logger;
@@ -28,7 +27,7 @@ public class CustomerDAO extends AbstractDAO {
             st.setDate(4, (java.sql.Date) customer.getAge());
             st.setInt(5, customer.getPhone());
             st.setString(6, customer.getCity());
-            st.setString(7, customer.getAdress());
+            st.setString(7, customer.getAddress());
             st.setString(8, customer.getEmail());
             st.setString(9, customer.getPassword());
 
@@ -54,7 +53,7 @@ public class CustomerDAO extends AbstractDAO {
                 customer.setAge(rs.getDate(4));
                 customer.setPhone(rs.getInt(5));
                 customer.setCity(rs.getString(6));
-                customer.setAdress(rs.getString(7));
+                customer.setAddress(rs.getString(7));
                 customer.setEmail(rs.getString(8));
                 customer.setPassword(rs.getString(9));
 
@@ -85,7 +84,7 @@ public class CustomerDAO extends AbstractDAO {
             st.setDate(3, (java.sql.Date) customer.getAge());
             st.setInt(4, customer.getPhone());
             st.setString(5, customer.getCity());
-            st.setString(6, customer.getAdress());
+            st.setString(6, customer.getAddress());
             st.setString(7, customer.getEmail());
             st.setString(8, customer.getPassword());
             st.setInt(9, customer.getId());

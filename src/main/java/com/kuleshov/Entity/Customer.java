@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Customer {
 
+    private int Id;
     private String firstName;
     private String lastName;
     private Date age;
@@ -13,9 +14,13 @@ public class Customer {
     private String address;
     private String password;
 
-    public String getFirstName() {
-        return firstName;
+    public int getId() {
+        return Id;
     }
+
+    public void setId(int id) { Id = id; }
+
+    public String getFirstName() { return firstName; }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -61,11 +66,11 @@ public class Customer {
         this.city = city;
     }
 
-    public String getAdress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAdress(String adress) {
+    public void setAddress(String adress) {
         this.address = adress;
     }
 
@@ -84,35 +89,38 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
+        if (Id != customer.Id) return false;
         if (phone != customer.phone) return false;
-        if (!address.equals(customer.address)) return false;
-        if (!age.equals(customer.age)) return false;
-        if (!city.equals(customer.city)) return false;
-        if (!email.equals(customer.email)) return false;
-        if (!firstName.equals(customer.firstName)) return false;
-        if (!lastName.equals(customer.lastName)) return false;
-        if (!password.equals(customer.password)) return false;
+        if (address != null ? !address.equals(customer.address) : customer.address != null) return false;
+        if (age != null ? !age.equals(customer.age) : customer.age != null) return false;
+        if (city != null ? !city.equals(customer.city) : customer.city != null) return false;
+        if (email != null ? !email.equals(customer.email) : customer.email != null) return false;
+        if (firstName != null ? !firstName.equals(customer.firstName) : customer.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(customer.lastName) : customer.lastName != null) return false;
+        if (password != null ? !password.equals(customer.password) : customer.password != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + age.hashCode();
+        int result = Id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + phone;
-        result = 31 * result + email.hashCode();
-        result = 31 * result + city.hashCode();
-        result = 31 * result + address.hashCode();
-        result = 31 * result + password.hashCode();
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "firstName='" + firstName + '\'' +
+                "Id=" + Id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", phone=" + phone +
