@@ -42,7 +42,7 @@ public class CategoryDAO extends AbstractDAO {
         }
     }
 
-    public Category find(int id) {
+    public Category findId(int id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setLong(1, id);
 
@@ -61,7 +61,7 @@ public class CategoryDAO extends AbstractDAO {
         }
     }
 
-    public Category find(String name) {
+    public Category findName(String name) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_NAME_QUERY)) {
             st.setString(1, name);
             ResultSet rs = st.executeQuery();
@@ -83,9 +83,9 @@ public class CategoryDAO extends AbstractDAO {
     public boolean update(Category category) {
         try (PreparedStatement st = connection.prepareStatement(UPDATE_QUERY)) {
 
-            st.setInt(3, category.getCategoryId());
             st.setString(1, category.getCategoryName());
             st.setString(2, category.getCategoryDescription());
+            st.setInt(3, category.getCategoryId());
 
             st.executeUpdate();
             return true;
