@@ -1,6 +1,5 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Category;
 import com.kuleshov.entity.Employee;
 import com.kuleshov.exception.IllegalRequestException;
 import org.apache.log4j.Logger;
