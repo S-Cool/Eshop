@@ -12,13 +12,6 @@ public class CategoryDAOTest extends TestCase {
     Category inputValue = new Category();
     Category updateValue = new Category();
 
-    @Before
-    public void runT() {
-        JDBCFactory jdbcFactory = new JDBCFactory();
-        jdbcFactory.getConnection();
-
-    }
-
     public void testSave() throws Exception {
         //given
         inputValue.setCategoryId(1);

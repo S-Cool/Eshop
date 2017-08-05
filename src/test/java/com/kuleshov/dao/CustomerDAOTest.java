@@ -12,13 +12,6 @@ public class CustomerDAOTest extends TestCase {
     Customer inputValue = new Customer();
     Customer updateValue = new Customer();
 
-    @Before
-    public void runT() {
-        JDBCFactory jdbcFactory = new JDBCFactory();
-        jdbcFactory.getConnection();
-
-    }
-
     public void testSave() throws Exception {
 
         //given
