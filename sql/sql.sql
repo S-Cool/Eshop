@@ -66,37 +66,29 @@ CREATE TABLE IF NOT EXISTS `eshop`.`employees` (
 -- -----------------------------------------------------
 -- Table `eshop`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `eshop`.`order` (
-  `OrderID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Customer_CustomerID` INT(11) NOT NULL,
-  `employees_EmployeeName` VARCHAR(30) NOT NULL,
-  `OrderDate` DATE NOT NULL,
-  `ShippedDate` DATE NOT NULL,
-  `PaymentMethods` ENUM('CASH', 'MASTERCARD') NOT NULL,
-  `Delivery` ENUM('PICKUP', 'DELIVERY', 'DELCOMPANY') NOT NULL,
-  `ShipFName` VARCHAR(45) NOT NULL,
-  `ShipLName` VARCHAR(45) NOT NULL,
-  `ShipPhone` INT(11) NOT NULL,
-  `ShipCity` VARCHAR(30) NOT NULL,
-  `ShipAddress` VARCHAR(45) NOT NULL,
-  `ShipEmail` VARCHAR(45) NOT NULL,
+  CREATE TABLE `order` (
+  `OrderID` int(11) NOT NULL AUTO_INCREMENT,
+  `Customer_CustomerID` int(11) NOT NULL,
+  `employees_EmployeeName` varchar(30) NOT NULL,
+  `OrderDate` date NOT NULL,
+  `ShippedDate` date NOT NULL,
+  `PaymentMethods` varchar(45) NOT NULL,
+  `Delivery` varchar(45) NOT NULL,
+  `ShipFName` varchar(45) NOT NULL,
+  `ShipLName` varchar(45) NOT NULL,
+  `ShipPhone` int(11) NOT NULL,
+  `ShipCity` varchar(30) NOT NULL,
+  `ShipAddress` varchar(45) NOT NULL,
+  `ShipEmail` varchar(45) NOT NULL,
   PRIMARY KEY (`OrderID`),
-  UNIQUE INDEX `OrderID_UNIQUE` (`OrderID` ASC),
-  UNIQUE INDEX `Customer_CustomerID_UNIQUE` (`Customer_CustomerID` ASC),
-  INDEX `fk_Order_Customer1_idx` (`Customer_CustomerID` ASC),
-  INDEX `fk_order_employees1_idx` (`employees_EmployeeName` ASC),
-  CONSTRAINT `fk_Order_Customer1`
-  FOREIGN KEY (`Customer_CustomerID`)
-  REFERENCES `eshop`.`customer` (`CustomerID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_employees1`
-  FOREIGN KEY (`employees_EmployeeName`)
-  REFERENCES `eshop`.`employees` (`EmployeeName`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = utf8;
+  UNIQUE KEY `OrderID_UNIQUE` (`OrderID`),
+  UNIQUE KEY `Customer_CustomerID_UNIQUE` (`Customer_CustomerID`),
+  KEY `fk_Order_Customer1_idx` (`Customer_CustomerID`),
+  KEY `fk_order_employees1_idx` (`employees_EmployeeName`),
+  CONSTRAINT `fk_Order_Customer1` FOREIGN KEY (`Customer_CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_employees1` FOREIGN KEY (`employees_EmployeeName`) REFERENCES `employees` (`EmployeeName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 
 -- -----------------------------------------------------

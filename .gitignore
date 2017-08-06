@@ -2,6 +2,7 @@
 WebProject.iml
 .idea/
 target/
+applog.txt
 
 # class files
 out/

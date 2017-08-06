@@ -1,18 +1,19 @@
 package com.kuleshov.entity;
 
 public class Product {
-    private String productId;
+    private int productId;
     private String productName;
     private int quantityInStock;
     private int price;
     private String description;
     private String brand;
+    private int categoryCategoryId;
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -56,6 +57,14 @@ public class Product {
         this.brand = brand;
     }
 
+    public int getCategoryCategoryId() {
+        return categoryCategoryId;
+    }
+
+    public void setCategoryCategoryId(int categoryCategoryId) {
+        this.categoryCategoryId = categoryCategoryId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,11 +72,12 @@ public class Product {
 
         Product product = (Product) o;
 
+        if (categoryCategoryId != product.categoryCategoryId) return false;
         if (price != product.price) return false;
+        if (productId != product.productId) return false;
         if (quantityInStock != product.quantityInStock) return false;
         if (!brand.equals(product.brand)) return false;
         if (!description.equals(product.description)) return false;
-        if (!productId.equals(product.productId)) return false;
         if (!productName.equals(product.productName)) return false;
 
         return true;
@@ -75,24 +85,26 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = productId.hashCode();
+        int result = productId;
         result = 31 * result + productName.hashCode();
         result = 31 * result + quantityInStock;
         result = 31 * result + price;
         result = 31 * result + description.hashCode();
         result = 31 * result + brand.hashCode();
+        result = 31 * result + categoryCategoryId;
         return result;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "productId='" + productId + '\'' +
+                "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", quantityInStock=" + quantityInStock +
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", brand='" + brand + '\'' +
+                ", categoryCategoryId=" + categoryCategoryId +
                 '}';
     }
 }

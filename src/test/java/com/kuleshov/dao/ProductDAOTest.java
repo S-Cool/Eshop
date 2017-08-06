@@ -84,13 +84,13 @@ public class ProductDAOTest extends TestCase {
         inputValue.setBrand("brand");
         inputValue.setCategoryCategoryId(4);
 
-        inputValue.setProductId(4);
-        inputValue.setProductName("newName");
-        inputValue.setQuantityInStock(1000);
-        inputValue.setPrice(399);
-        inputValue.setDescription("new desc prod");
-        inputValue.setBrand("newBrand");
-        inputValue.setCategoryCategoryId(4);
+        updateValue.setProductId(4);
+        updateValue.setProductName("newName");
+        updateValue.setQuantityInStock(1000);
+        updateValue.setPrice(399);
+        updateValue.setDescription("new desc prod");
+        updateValue.setBrand("newBrand");
+        updateValue.setCategoryCategoryId(4);
 
         //when
         boolean saveCategory = categoryDAO.save(category);
