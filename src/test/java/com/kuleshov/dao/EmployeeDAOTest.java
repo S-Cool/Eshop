@@ -1,6 +1,5 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Category;
 import com.kuleshov.entity.Employee;
 import junit.framework.TestCase;
 import org.junit.Assert;

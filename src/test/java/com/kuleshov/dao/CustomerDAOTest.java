@@ -1,10 +1,8 @@
 package com.kuleshov.dao;
 
 import com.kuleshov.entity.Customer;
-import com.kuleshov.util.JDBCFactory;
 import junit.framework.TestCase;
 import org.junit.Assert;
-import org.junit.Before;
 
 public class CustomerDAOTest extends TestCase {
 
@@ -58,28 +56,6 @@ public class CustomerDAOTest extends TestCase {
         Assert.assertTrue(delete);
     }
 
-    public void testDelete() throws Exception {
-
-        //given
-        inputValue.setId(3);
-        inputValue.setFirstName("Cool");
-        inputValue.setLastName("Sergei");
-        inputValue.setAge(new java.sql.Date(2017, 12, 30));
-        inputValue.setPhone(5555555);
-        inputValue.setCity("City");
-        inputValue.setAddress("Address");
-        inputValue.setEmail("Cool@mail.com");
-        inputValue.setPassword("12345");
-
-        //when
-        boolean save = customerDAO.save(inputValue);
-        boolean delete = customerDAO.delete(3);
-
-        //then
-        Assert.assertTrue(save);
-        Assert.assertTrue(delete);
-    }
-
     public void testUpdate() throws Exception {
 
         //given
@@ -111,6 +87,28 @@ public class CustomerDAOTest extends TestCase {
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertTrue(delete);
+    }
+
+    public void testDelete() throws Exception {
+
+        //given
+        inputValue.setId(3);
+        inputValue.setFirstName("Cool");
+        inputValue.setLastName("Sergei");
+        inputValue.setAge(new java.sql.Date(2017, 12, 30));
+        inputValue.setPhone(5555555);
+        inputValue.setCity("City");
+        inputValue.setAddress("Address");
+        inputValue.setEmail("Cool@mail.com");
+        inputValue.setPassword("12345");
+
+        //when
+        boolean save = customerDAO.save(inputValue);
+        boolean delete = customerDAO.delete(3);
+
+        //then
+        Assert.assertTrue(save);
         Assert.assertTrue(delete);
     }
 }

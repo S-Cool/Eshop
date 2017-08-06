@@ -1,10 +1,8 @@
 package com.kuleshov.dao;
 
 import com.kuleshov.entity.Category;
-import com.kuleshov.util.JDBCFactory;
 import junit.framework.TestCase;
 import org.junit.Assert;
-import org.junit.Before;
 
 public class CategoryDAOTest extends TestCase {
 
@@ -21,21 +19,6 @@ public class CategoryDAOTest extends TestCase {
         //when
         boolean save = categoryDAO.save(inputValue);
         boolean delete = categoryDAO.delete("Tech");
-
-        //then
-        Assert.assertTrue(save);
-        Assert.assertTrue(delete);
-    }
-
-    public void testDeleteName() throws Exception {
-        //given
-        inputValue.setCategoryId(2);
-        inputValue.setCategoryName("Refrigerator");
-        inputValue.setCategoryDescription("Refrigerator description");
-
-        //when
-        boolean save = categoryDAO.save(inputValue);
-        boolean delete = categoryDAO.delete("Refrigerator");
 
         //then
         Assert.assertTrue(save);
@@ -94,6 +77,21 @@ public class CategoryDAOTest extends TestCase {
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertTrue(delete);
+    }
+
+    public void testDeleteName() throws Exception {
+        //given
+        inputValue.setCategoryId(2);
+        inputValue.setCategoryName("Refrigerator");
+        inputValue.setCategoryDescription("Refrigerator description");
+
+        //when
+        boolean save = categoryDAO.save(inputValue);
+        boolean delete = categoryDAO.delete("Refrigerator");
+
+        //then
+        Assert.assertTrue(save);
         Assert.assertTrue(delete);
     }
 }
