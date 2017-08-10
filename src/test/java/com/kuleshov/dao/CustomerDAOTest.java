@@ -1,16 +1,18 @@
 package com.kuleshov.dao;
 
 import com.kuleshov.entity.Customer;
-import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class CustomerDAOTest extends TestCase {
+public class CustomerDAOTest {
 
-    CustomerDAO customerDAO = new CustomerDAO();
-    Customer inputValue = new Customer();
-    Customer updateValue = new Customer();
+    private CustomerDAO customerDAO = new CustomerDAO();
+    private Customer inputValue = new Customer();
+    private Customer updateValue = new Customer();
 
-    public void testSave() throws Exception {
+
+    @Test
+    public void shouldSaveUser() {
 
         //given
         inputValue.setId(1);
@@ -25,14 +27,17 @@ public class CustomerDAOTest extends TestCase {
 
         //when
         boolean save = customerDAO.save(inputValue);
+        Customer find = customerDAO.findId(1);
         boolean delete = customerDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
+        Assert.assertEquals(find,inputValue);
         Assert.assertTrue(delete);
     }
 
-    public void testFindId() throws Exception {
+    @Test
+    public void shouldFindUser() {
 
         //given
         inputValue.setId(1);
@@ -56,7 +61,8 @@ public class CustomerDAOTest extends TestCase {
         Assert.assertTrue(delete);
     }
 
-    public void testUpdate() throws Exception {
+    @Test
+    public void shouldUpdateUser() {
 
         //given
         inputValue.setId(1);
@@ -82,15 +88,18 @@ public class CustomerDAOTest extends TestCase {
         //when
         boolean save = customerDAO.save(inputValue);
         boolean update = customerDAO.update(updateValue);
+        Customer find = customerDAO.findId(1);
         boolean delete = customerDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertEquals(updateValue, find);
         Assert.assertTrue(delete);
     }
 
-    public void testDelete() throws Exception {
+    @Test
+    public void shouldDeleteUser() {
 
         //given
         inputValue.setId(3);
@@ -106,9 +115,11 @@ public class CustomerDAOTest extends TestCase {
         //when
         boolean save = customerDAO.save(inputValue);
         boolean delete = customerDAO.delete(3);
+        Customer findAfterDelete = customerDAO.findId(3);
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
+        Assert.assertNotEquals(inputValue, findAfterDelete);
     }
 }

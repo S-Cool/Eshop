@@ -9,12 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CategoryDAO extends AbstractDAO {
+
     private Logger logger = Logger.getLogger(this.getClass());
     private String SAVE_QUERY = "INSERT INTO eshop.category (CategoryID, CategoryName, CategoryDescription) VALUES (?, ?, ?);";
     private String SELECT_BY_ID_QUERY = "SELECT CategoryID, CategoryName, CategoryDescription FROM category WHERE CategoryID=?";
     private String SELECT_BY_NAME_QUERY = "SELECT CategoryID, CategoryName, CategoryDescription FROM category WHERE CategoryName=?";
     private String DELETE_QUERY = "DELETE FROM eshop.category  WHERE CategoryName=?";
     private String UPDATE_QUERY = "UPDATE eshop.category SET CategoryName=?, CategoryDescription=? WHERE CategoryID=?";
+
 
     public boolean save(Category category) {
         try (PreparedStatement st = connection.prepareStatement(SAVE_QUERY)) {
@@ -42,7 +44,7 @@ public class CategoryDAO extends AbstractDAO {
         }
     }
 
-    public Category findId(int id) {
+    public Category find(int id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setLong(1, id);
 
@@ -61,7 +63,7 @@ public class CategoryDAO extends AbstractDAO {
         }
     }
 
-    public Category findName(String name) {
+    public Category find(String name) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_NAME_QUERY)) {
             st.setString(1, name);
             ResultSet rs = st.executeQuery();

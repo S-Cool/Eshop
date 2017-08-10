@@ -22,7 +22,7 @@ public class ProductDAO extends AbstractDAO {
     public boolean save(Product product) {
         try (PreparedStatement st = connection.prepareStatement(SAVE_QUERY)) {
 
-            st.setInt(1, product.getProductId());
+            st.setString(1, product.getProductId());
             st.setString(2, product.getProductName());
             st.setInt(3, product.getQuantityInStock());
             st.setInt(4, product.getPrice());
@@ -38,14 +38,14 @@ public class ProductDAO extends AbstractDAO {
         }
     }
 
-    public Product findId(int id) {
+    public Product findId(String id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
-            st.setInt(1, id);
+            st.setString(1, id);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
                 Product product = new Product();
-                product.setProductId(rs.getInt(1));
+                product.setProductId(rs.getString(1));
                 product.setProductName(rs.getString(2));
                 product.setQuantityInStock(rs.getInt(3));
                 product.setPrice(rs.getInt(4));
@@ -64,14 +64,14 @@ public class ProductDAO extends AbstractDAO {
     public boolean update(Product product) {
         try (PreparedStatement st = connection.prepareStatement(UPDATE_QUERY)) {
 
-            st.setInt(1, product.getProductId());
+            st.setString(1, product.getProductId());
             st.setString(2, product.getProductName());
             st.setInt(3, product.getQuantityInStock());
             st.setInt(4, product.getPrice());
             st.setString(5, product.getDescription());
             st.setString(6, product.getBrand());
             st.setInt(7, product.getCategoryCategoryId());
-            st.setInt(8, product.getProductId());
+            st.setString(8, product.getProductId());
 
             st.executeUpdate();
             return true;
@@ -81,9 +81,9 @@ public class ProductDAO extends AbstractDAO {
         }
     }
 
-    public boolean delete(int id) {
+    public boolean delete(String id) {
         try (PreparedStatement st = connection.prepareStatement(DELETE_QUERY)) {
-            st.setInt(1, id);
+            st.setString(1, id);
 
             st.executeUpdate();
             return true;

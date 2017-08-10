@@ -1,7 +1,8 @@
 package com.kuleshov.entity;
 
 public class Product {
-    private int productId;
+
+    private String productId;
     private String productName;
     private int quantityInStock;
     private int price;
@@ -9,11 +10,11 @@ public class Product {
     private String brand;
     private int categoryCategoryId;
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -74,10 +75,10 @@ public class Product {
 
         if (categoryCategoryId != product.categoryCategoryId) return false;
         if (price != product.price) return false;
-        if (productId != product.productId) return false;
         if (quantityInStock != product.quantityInStock) return false;
         if (!brand.equals(product.brand)) return false;
         if (!description.equals(product.description)) return false;
+        if (!productId.equals(product.productId)) return false;
         if (!productName.equals(product.productName)) return false;
 
         return true;
@@ -85,7 +86,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = productId;
+        int result = productId.hashCode();
         result = 31 * result + productName.hashCode();
         result = 31 * result + quantityInStock;
         result = 31 * result + price;
@@ -98,7 +99,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "productId='" + productId + '\'' +
                 ", productName='" + productName + '\'' +
                 ", quantityInStock=" + quantityInStock +
                 ", price=" + price +

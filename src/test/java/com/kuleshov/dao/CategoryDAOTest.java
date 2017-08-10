@@ -1,16 +1,18 @@
 package com.kuleshov.dao;
 
 import com.kuleshov.entity.Category;
-import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class CategoryDAOTest extends TestCase {
+public class CategoryDAOTest {
 
-    CategoryDAO categoryDAO = new CategoryDAO();
-    Category inputValue = new Category();
-    Category updateValue = new Category();
+    private CategoryDAO categoryDAO = new CategoryDAO();
+    private Category inputValue = new Category();
+    private Category updateValue = new Category();
 
-    public void testSave() throws Exception {
+    @Test
+    public void shouldSaveCategory() {
+
         //given
         inputValue.setCategoryId(1);
         inputValue.setCategoryName("Tech");
@@ -18,14 +20,18 @@ public class CategoryDAOTest extends TestCase {
 
         //when
         boolean save = categoryDAO.save(inputValue);
+        Category find = categoryDAO.find("Tech");
         boolean delete = categoryDAO.delete("Tech");
 
         //then
         Assert.assertTrue(save);
+        Assert.assertEquals(find,inputValue);
         Assert.assertTrue(delete);
     }
 
-    public void testFindName() throws Exception {
+    @Test
+    public void shouldFindCategoryById() {
+
         //given
         inputValue.setCategoryId(3);
         inputValue.setCategoryName("Microwave");
@@ -33,7 +39,7 @@ public class CategoryDAOTest extends TestCase {
 
         //when
         boolean save = categoryDAO.save(inputValue);
-        Category find = categoryDAO.findName("Microwave");
+        Category find = categoryDAO.find("Microwave");
         boolean delete = categoryDAO.delete("Microwave");
 
         //then
@@ -42,7 +48,9 @@ public class CategoryDAOTest extends TestCase {
         Assert.assertTrue(delete);
     }
 
-    public void testFindId() throws Exception {
+    @Test
+    public void shouldFindCategoryByName() {
+
         //given
         inputValue.setCategoryId(4);
         inputValue.setCategoryName("Kettle");
@@ -50,7 +58,7 @@ public class CategoryDAOTest extends TestCase {
 
         //when
         boolean save = categoryDAO.save(inputValue);
-        Category find = categoryDAO.findId(4);
+        Category find = categoryDAO.find(4);
         boolean delete = categoryDAO.delete("Kettle");
 
         //then
@@ -59,7 +67,9 @@ public class CategoryDAOTest extends TestCase {
         Assert.assertTrue(delete);
     }
 
-    public void testUpdate() throws Exception {
+    @Test
+    public void shouldUpdateCategory() {
+
         //given
         inputValue.setCategoryId(1);
         inputValue.setCategoryName("Tech");
@@ -72,15 +82,19 @@ public class CategoryDAOTest extends TestCase {
         //when
         boolean save = categoryDAO.save(inputValue);
         boolean update = categoryDAO.update(updateValue);
+        Category find = categoryDAO.find("New");
         boolean delete = categoryDAO.delete("New");
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertEquals(updateValue, find);
         Assert.assertTrue(delete);
     }
 
-    public void testDeleteName() throws Exception {
+    @Test
+    public void shouldDeleteCategory() {
+
         //given
         inputValue.setCategoryId(2);
         inputValue.setCategoryName("Refrigerator");
@@ -89,9 +103,11 @@ public class CategoryDAOTest extends TestCase {
         //when
         boolean save = categoryDAO.save(inputValue);
         boolean delete = categoryDAO.delete("Refrigerator");
+        Category findAfterDelete = categoryDAO.find("Refrigerator");
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
+        Assert.assertNotEquals(inputValue, findAfterDelete);
     }
 }

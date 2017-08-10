@@ -1,6 +1,5 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Employee;
 import com.kuleshov.entity.OrderDetails;
 import com.kuleshov.exception.IllegalRequestException;
 import org.apache.log4j.Logger;
@@ -38,7 +37,7 @@ public class OrderDetailsDAO extends AbstractDAO {
         }
     }
 
-    public OrderDetails findId(int id) {
+    public OrderDetails find(int id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();

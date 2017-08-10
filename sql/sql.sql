@@ -117,29 +117,17 @@ CREATE TABLE IF NOT EXISTS `eshop`.`products` (
 -- -----------------------------------------------------
 -- Table `eshop`.`orderproducts`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `eshop`.`orderproducts` (
-  `ProductID` VARCHAR(15) NOT NULL,
-  `OrderID` INT(11) NOT NULL,
-  `UnitPrice` FLOAT NOT NULL,
-  `Quantity` INT(11) NOT NULL,
-  `Discount` INT(11) NOT NULL,
-  PRIMARY KEY (`ProductID`, `OrderID`),
-  INDEX `fk_products_has_order_order1_idx` (`OrderID` ASC),
-  INDEX `fk_products_has_order_products1_idx` (`ProductID` ASC),
-  CONSTRAINT `fk_products_has_order_order1`
-  FOREIGN KEY (`OrderID`)
-  REFERENCES `eshop`.`order` (`OrderID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_products_has_order_products1`
-  FOREIGN KEY (`ProductID`)
-  REFERENCES `eshop`.`products` (`ProductID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = utf8;
+CREATE TABLE `orderproducts` (
+  `OrderProductID` int(11) NOT NULL,
+  `ProductID` varchar(45) NOT NULL,
+  `OrderID` int(11) NOT NULL,
+  `UnitPrice` float NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Discount` int(11) NOT NULL,
+  PRIMARY KEY (`ProductID`,`OrderID`,`OrderProductID`),
+  UNIQUE KEY `OrderProductID_UNIQUE` (`OrderProductID`),
+  KEY `fk_products_has_order_order1_idx` (`OrderID`),
+  KEY `fk_products_has_order_products1_idx` (`ProductID`),
+  CONSTRAINT `fk_products_has_order_order1` FOREIGN KEY (`OrderID`) REFERENCES `order` (`OrderID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -1,16 +1,17 @@
 package com.kuleshov.dao;
 
 import com.kuleshov.entity.Employee;
-import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class EmployeeDAOTest extends TestCase {
+public class EmployeeDAOTest {
 
-    EmployeeDAO employeeDAO = new EmployeeDAO();
-    Employee inputValue = new Employee();
-    Employee updateValue = new Employee();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private Employee inputValue = new Employee();
+    private Employee updateValue = new Employee();
 
-    public void testSave() throws Exception {
+    @Test
+    public void testSave() {
 
         //given
         inputValue.setName("Larry");
@@ -18,14 +19,17 @@ public class EmployeeDAOTest extends TestCase {
 
         //when
         boolean save = employeeDAO.save(inputValue);
+        Employee find = employeeDAO.findName("Larry");
         boolean delete = employeeDAO.delete("Larry");
 
         //then
         Assert.assertTrue(save);
+        Assert.assertEquals(find,inputValue);
         Assert.assertTrue(delete);
     }
 
-    public void testFindName() throws Exception {
+    @Test
+    public void testFindName() {
 
         //given
         inputValue.setName("Jonathan");
@@ -42,7 +46,9 @@ public class EmployeeDAOTest extends TestCase {
         Assert.assertTrue(delete);
     }
 
-    public void testUpdate() throws Exception {
+    @Test
+    public void testUpdate() {
+
         //given
         inputValue.setName("Smith");
         inputValue.setPassword("passSmith");
@@ -53,15 +59,18 @@ public class EmployeeDAOTest extends TestCase {
         //when
         boolean save = employeeDAO.save(inputValue);
         boolean update = employeeDAO.update(updateValue);
+        Employee find = employeeDAO.findName("Smith");
         boolean delete = employeeDAO.delete("Smith");
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertEquals(updateValue, find);
         Assert.assertTrue(delete);
     }
 
-    public void testDelete() throws Exception {
+    @Test
+    public void testDelete() {
 
         //given
         inputValue.setName("Sergei");
@@ -70,9 +79,11 @@ public class EmployeeDAOTest extends TestCase {
         //when
         boolean save = employeeDAO.save(inputValue);
         boolean delete = employeeDAO.delete("Sergei");
+        Employee findAfterDelete = employeeDAO.findName("Smith");
 
         //then
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
+        Assert.assertNotEquals(inputValue, findAfterDelete);
     }
 }

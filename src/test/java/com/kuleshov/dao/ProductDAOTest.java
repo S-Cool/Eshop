@@ -2,25 +2,27 @@ package com.kuleshov.dao;
 
 import com.kuleshov.entity.Category;
 import com.kuleshov.entity.Product;
-import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class ProductDAOTest extends TestCase {
+public class ProductDAOTest {
 
-    CategoryDAO categoryDAO = new CategoryDAO();
-    Category category = new Category();
+    private CategoryDAO categoryDAO = new CategoryDAO();
+    private Category category = new Category();
 
-    ProductDAO productDAO = new ProductDAO();
-    Product inputValue = new Product();
-    Product updateValue = new Product();
+    private ProductDAO productDAO = new ProductDAO();
+    private Product inputValue = new Product();
+    private Product updateValue = new Product();
 
-    public void testSave() throws Exception {
+    @Test
+    public void testSave() {
+
         //given
         category.setCategoryId(1);
         category.setCategoryName("Tech");
         category.setCategoryDescription("Tech description");
 
-        inputValue.setProductId(1);
+        inputValue.setProductId("id123");
         inputValue.setProductName("name");
         inputValue.setQuantityInStock(999);
         inputValue.setPrice(499);
@@ -31,23 +33,27 @@ public class ProductDAOTest extends TestCase {
         //when
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
-        boolean delete = productDAO.delete(1);
+        Product find = productDAO.findId("id123");
+        boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
         //then
         Assert.assertTrue(saveCategory);
         Assert.assertTrue(save);
+        Assert.assertEquals(find,inputValue);
         Assert.assertTrue(delete);
         Assert.assertTrue(deleteCategory);
     }
 
-    public void testFindId() throws Exception {
+    @Test
+    public void testFindId() {
+
         //given
         category.setCategoryId(2);
         category.setCategoryName("Tech");
         category.setCategoryDescription("Tech description");
 
-        inputValue.setProductId(2);
+        inputValue.setProductId("id123");
         inputValue.setProductName("name");
         inputValue.setQuantityInStock(999);
         inputValue.setPrice(499);
@@ -58,8 +64,8 @@ public class ProductDAOTest extends TestCase {
         //when
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
-        Product find = productDAO.findId(2);
-        boolean delete = productDAO.delete(2);
+        Product find = productDAO.findId("id123");
+        boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
         //then
@@ -70,13 +76,15 @@ public class ProductDAOTest extends TestCase {
         Assert.assertTrue(deleteCategory);
     }
 
-    public void testUpdate() throws Exception {
+    @Test
+    public void testUpdate() {
+
         //given
         category.setCategoryId(4);
         category.setCategoryName("Tech");
         category.setCategoryDescription("Tech description");
 
-        inputValue.setProductId(4);
+        inputValue.setProductId("id123");
         inputValue.setProductName("name");
         inputValue.setQuantityInStock(999);
         inputValue.setPrice(499);
@@ -84,7 +92,7 @@ public class ProductDAOTest extends TestCase {
         inputValue.setBrand("brand");
         inputValue.setCategoryCategoryId(4);
 
-        updateValue.setProductId(4);
+        updateValue.setProductId("id123");
         updateValue.setProductName("newName");
         updateValue.setQuantityInStock(1000);
         updateValue.setPrice(399);
@@ -96,24 +104,28 @@ public class ProductDAOTest extends TestCase {
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
         boolean update = productDAO.update(updateValue);
-        boolean delete = productDAO.delete(4);
+        Product find = productDAO.findId("id123");
+        boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
         //then
         Assert.assertTrue(saveCategory);
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertEquals(updateValue, find);
         Assert.assertTrue(delete);
         Assert.assertTrue(deleteCategory);
     }
 
-    public void testDelete() throws Exception {
+    @Test
+    public void testDelete() {
+
         //given
         category.setCategoryId(3);
         category.setCategoryName("NewTech");
         category.setCategoryDescription("Tech description");
 
-        inputValue.setProductId(3);
+        inputValue.setProductId("id123");
         inputValue.setProductName("name");
         inputValue.setQuantityInStock(999);
         inputValue.setPrice(499);
@@ -124,7 +136,8 @@ public class ProductDAOTest extends TestCase {
         //when
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
-        boolean delete = productDAO.delete(3);
+        boolean delete = productDAO.delete("id123");
+        Product findAfterDelete = productDAO.findId("id123");
         boolean deleteCategory = categoryDAO.delete("NewTech");
 
         //then
@@ -132,5 +145,6 @@ public class ProductDAOTest extends TestCase {
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
         Assert.assertTrue(deleteCategory);
+        Assert.assertNotEquals(inputValue, findAfterDelete);
     }
 }
