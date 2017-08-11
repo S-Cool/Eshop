@@ -15,7 +15,7 @@ public class ProductDAOTest {
     private Product updateValue = new Product();
 
     @Test
-    public void testSave() {
+    public void shouldSaveProduct() {
 
         //given
         category.setCategoryId(1);
@@ -46,7 +46,7 @@ public class ProductDAOTest {
     }
 
     @Test
-    public void testFindId() {
+    public void shouldFindProduct() {
 
         //given
         category.setCategoryId(2);
@@ -77,7 +77,7 @@ public class ProductDAOTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void shouldUpdateProduct() {
 
         //given
         category.setCategoryId(4);
@@ -118,7 +118,7 @@ public class ProductDAOTest {
     }
 
     @Test
-    public void testDelete() {
+    public void shouldDeleteProduct() {
 
         //given
         category.setCategoryId(3);

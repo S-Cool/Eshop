@@ -15,8 +15,8 @@ public class OrderDAO extends AbstractDAO {
             "INSERT INTO eshop.order (OrderID, Customer_CustomerID, employees_EmployeeName, OrderDate, ShippedDate, PaymentMethods, " +
                     "Delivery, ShipFName, ShipLName, ShipPhone, ShipCity, ShipAddress, ShipEmail) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    private String SELECT_BY_ID_QUERY = "SELECT OrderID, Customer_CustomerID, employees_EmployeeName, OrderDate, ShippedDate, PaymentMethods, " +
-            "Delivery, ShipFName, ShipLName, ShipPhone, ShipCity, ShipAddress, ShipEmail FROM eshop.order WHERE OrderID=?";
+    private String SELECT_BY_ID_QUERY = "SELECT OrderID, Customer_CustomerID, employees_EmployeeName, OrderDate, ShippedDate, " +
+            "PaymentMethods, Delivery, ShipFName, ShipLName, ShipPhone, ShipCity, ShipAddress, ShipEmail FROM eshop.order where OrderID=?;";
     private String UPDATE_QUERY = "UPDATE eshop.order SET OrderID=?, Customer_CustomerID=?, employees_EmployeeName=?, OrderDate=?, ShippedDate=?," +
             " PaymentMethods=?, Delivery=?, ShipFName=?, ShipLName=?, ShipPhone=?, ShipCity=?, ShipAddress=?, ShipEmail=? WHERE OrderID=?;";
     private String DELETE_QUERY = "DELETE FROM eshop.order WHERE OrderID=?;";
@@ -46,7 +46,7 @@ public class OrderDAO extends AbstractDAO {
         }
     }
 
-    public Order findId(int id) {
+    public Order find(int id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();

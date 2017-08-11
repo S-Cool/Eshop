@@ -82,6 +82,7 @@ public class OrderDetailsDAOTest {
         boolean saveOrder = orderDAO.save(order);
         boolean saveProduct = productDAO.save(product);
         boolean save = orderDetailsDAO.save(inputValue);
+        OrderDetails find = orderDetailsDAO.find(1);
         boolean delete = orderDetailsDAO.delete(1);
         boolean deleteProduct = productDAO.delete("id123");
         boolean deleteOrder = orderDAO.delete(1);
@@ -96,6 +97,7 @@ public class OrderDetailsDAOTest {
         Assert.assertTrue(saveCategory);
         Assert.assertTrue(saveProduct);
         Assert.assertTrue(save);
+        Assert.assertEquals(find,inputValue);
         Assert.assertTrue(delete);
         Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
@@ -257,6 +259,7 @@ public class OrderDetailsDAOTest {
         boolean saveProduct = productDAO.save(product);
         boolean save = orderDetailsDAO.save(inputValue);
         boolean update = orderDetailsDAO.update(updateValue);
+        OrderDetails find = orderDetailsDAO.find(1);
         boolean delete = orderDetailsDAO.delete(1);
         boolean deleteProduct = productDAO.delete("id123");
         boolean deleteOrder = orderDAO.delete(1);
@@ -272,6 +275,7 @@ public class OrderDetailsDAOTest {
         Assert.assertTrue(saveProduct);
         Assert.assertTrue(save);
         Assert.assertTrue(update);
+        Assert.assertEquals(updateValue, find);
         Assert.assertTrue(delete);
         Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
@@ -337,6 +341,7 @@ public class OrderDetailsDAOTest {
         boolean saveProduct = productDAO.save(product);
         boolean save = orderDetailsDAO.save(inputValue);
         boolean delete = orderDetailsDAO.delete(1);
+        OrderDetails findAfterDelete = orderDetailsDAO.find(1);
         boolean deleteProduct = productDAO.delete("id123");
         boolean deleteOrder = orderDAO.delete(1);
         boolean deleteCategory = categoryDAO.delete("Tech");
@@ -351,6 +356,7 @@ public class OrderDetailsDAOTest {
         Assert.assertTrue(saveProduct);
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
+        Assert.assertNotEquals(inputValue, findAfterDelete);
         Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
         Assert.assertTrue(deleteProduct);

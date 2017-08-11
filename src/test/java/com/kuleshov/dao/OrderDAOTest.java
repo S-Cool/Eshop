@@ -1,22 +1,26 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.*;
-import junit.framework.TestCase;
+import com.kuleshov.entity.Customer;
+import com.kuleshov.entity.Employee;
+import com.kuleshov.entity.Order;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class OrderDAOTest extends TestCase {
+public class OrderDAOTest {
 
-    CustomerDAO customerDAO = new CustomerDAO();
-    Customer customer = new Customer();
+    private CustomerDAO customerDAO = new CustomerDAO();
+    private Customer customer = new Customer();
 
-    EmployeeDAO employeeDAO = new EmployeeDAO();
-    Employee employee = new Employee();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private Employee employee = new Employee();
 
-    OrderDAO orderDAO = new OrderDAO();
-    Order inputValue = new Order();
-    Order updateValue = new Order();
+    private OrderDAO orderDAO = new OrderDAO();
+    private Order inputValue = new Order();
+    private Order updateValue = new Order();
 
-    public void testSave() throws Exception {
+    @Test
+    public void shouldSaveOrder() {
+
         //given
         customer.setId(1);
         customer.setFirstName("Cool");
@@ -62,7 +66,9 @@ public class OrderDAOTest extends TestCase {
         Assert.assertTrue(deleteCustomer);
     }
 
-    public void testFindId() throws Exception {
+    @Test
+    public void shouldFindOrder() {
+        
         //given
         customer.setId(3);
         customer.setFirstName("Cool");
@@ -95,7 +101,7 @@ public class OrderDAOTest extends TestCase {
         boolean saveCustomer = customerDAO.save(customer);
         boolean saveEmployee = employeeDAO.save(employee);
         boolean save = orderDAO.save(inputValue);
-        Order find = orderDAO.findId(3);
+        Order find = orderDAO.find(3);
         boolean delete = orderDAO.delete(3);
         boolean deleteEmployee = employeeDAO.delete("Jon");
         boolean deleteCustomer = customerDAO.delete(3);
@@ -110,7 +116,9 @@ public class OrderDAOTest extends TestCase {
         Assert.assertTrue(deleteCustomer);
     }
 
-    public void testUpdate() throws Exception {
+    @Test
+    public void shouldUpdateOrder() {
+
         //given
         customer.setId(4);
         customer.setFirstName("Cool");
@@ -172,7 +180,9 @@ public class OrderDAOTest extends TestCase {
         Assert.assertTrue(deleteCustomer);
     }
 
-    public void testDelete() throws Exception {
+    @Test
+    public void shouldDeleteOrder() {
+
         //given
         customer.setId(2);
         customer.setFirstName("Cool");

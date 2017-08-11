@@ -11,7 +11,7 @@ public class EmployeeDAOTest {
     private Employee updateValue = new Employee();
 
     @Test
-    public void testSave() {
+    public void shouldSaveEmployee() {
 
         //given
         inputValue.setName("Larry");
@@ -29,7 +29,7 @@ public class EmployeeDAOTest {
     }
 
     @Test
-    public void testFindName() {
+    public void shouldFindEmployee() {
 
         //given
         inputValue.setName("Jonathan");
@@ -47,7 +47,7 @@ public class EmployeeDAOTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void shouldUpdateEmployee() {
 
         //given
         inputValue.setName("Smith");
@@ -70,7 +70,7 @@ public class EmployeeDAOTest {
     }
 
     @Test
-    public void testDelete() {
+    public void shouldDeleteEmployee() {
 
         //given
         inputValue.setName("Sergei");
