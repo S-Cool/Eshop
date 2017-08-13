@@ -19,7 +19,7 @@ public class EmployeeDAOTest {
 
         //when
         boolean save = employeeDAO.save(inputValue);
-        Employee find = employeeDAO.findName("Larry");
+        Employee find = employeeDAO.find("Larry");
         boolean delete = employeeDAO.delete("Larry");
 
         //then
@@ -37,7 +37,7 @@ public class EmployeeDAOTest {
 
         //when
         boolean save = employeeDAO.save(inputValue);
-        Employee find = employeeDAO.findName("Jonathan");
+        Employee find = employeeDAO.find("Jonathan");
         boolean delete = employeeDAO.delete("Jonathan");
 
         //then
@@ -59,7 +59,7 @@ public class EmployeeDAOTest {
         //when
         boolean save = employeeDAO.save(inputValue);
         boolean update = employeeDAO.update(updateValue);
-        Employee find = employeeDAO.findName("Smith");
+        Employee find = employeeDAO.find("Smith");
         boolean delete = employeeDAO.delete("Smith");
 
         //then
@@ -79,7 +79,7 @@ public class EmployeeDAOTest {
         //when
         boolean save = employeeDAO.save(inputValue);
         boolean delete = employeeDAO.delete("Sergei");
-        Employee findAfterDelete = employeeDAO.findName("Smith");
+        Employee findAfterDelete = employeeDAO.find("Smith");
 
         //then
         Assert.assertTrue(save);

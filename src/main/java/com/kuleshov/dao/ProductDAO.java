@@ -56,7 +56,7 @@ public class ProductDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't find product with ID: " + id);
+            logger.error("Can't findEmail product with ID: " + id);
             return null;
         }
     }

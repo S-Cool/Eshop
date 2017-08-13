@@ -70,7 +70,7 @@ public class OrderDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't find order with id: " + id);
+            logger.error("Can't findEmail order with id: " + id);
             return null;
         }
     }

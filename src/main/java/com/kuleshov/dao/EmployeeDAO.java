@@ -30,7 +30,7 @@ public class EmployeeDAO extends AbstractDAO {
         }
     }
 
-    public Employee findName(String name) {
+    public Employee find(String name) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_NAME_QUERY)) {
             st.setString(1, name);
             ResultSet rs = st.executeQuery();
@@ -43,7 +43,7 @@ public class EmployeeDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't find employee with name: " + name);
+            logger.error("Can't findEmail employee with name: " + name);
             return null;
         }
     }

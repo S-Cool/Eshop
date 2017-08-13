@@ -14,6 +14,8 @@ public class CustomerDAO extends AbstractDAO {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private String SELECT_BY_ID_QUERY = "SELECT CustomerID, FirstName, LastName, Age, Phone, City, Address, Email, Password FROM customer " +
             "WHERE CustomerID=?";
+    private String SELECT_BY_EMAIL_QUERY = "SELECT CustomerID, FirstName, LastName, Age, Phone, City, Address, Email, Password FROM customer " +
+            "WHERE Email=?";
     private String DELETE_QUERY = "DELETE FROM eshop.customer  WHERE CustomerID=?";
     private String UPDATE_QUERY = "UPDATE eshop.customer " +
             "SET FirstName=?, LastName=?, Age=?, Phone=?, City=?, Address=?, Email=?, Password=? WHERE CustomerID=?";
@@ -24,7 +26,7 @@ public class CustomerDAO extends AbstractDAO {
             st.setInt(1, customer.getId());
             st.setString(2, customer.getFirstName());
             st.setString(3, customer.getLastName());
-            st.setDate(4, (java.sql.Date) customer.getAge());
+            st.setDate(4, (customer.getAge()));
             st.setInt(5, customer.getPhone());
             st.setString(6, customer.getCity());
             st.setString(7, customer.getAddress());
@@ -39,7 +41,7 @@ public class CustomerDAO extends AbstractDAO {
         }
     }
 
-    public Customer findId(int id) {
+    public Customer find(int id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setLong(1, id);
 
@@ -60,7 +62,33 @@ public class CustomerDAO extends AbstractDAO {
             }
             return customer;
         } catch (SQLException e) {
-            logger.error("Can't find customer with id: " + id);
+            logger.error("Can't findEmail customer with id: " + id);
+            return null;
+        }
+    }
+
+    public Customer findEmail(String email) {
+        try (PreparedStatement st = connection.prepareStatement(SELECT_BY_EMAIL_QUERY)) {
+            st.setString(1, email);
+
+            ResultSet rs = st.executeQuery();
+            Customer customer = new Customer();
+
+            while (rs.next()) {
+                customer.setId(rs.getInt(1));
+                customer.setFirstName(rs.getString(2));
+                customer.setLastName(rs.getString(3));
+                customer.setAge(rs.getDate(4));
+                customer.setPhone(rs.getInt(5));
+                customer.setCity(rs.getString(6));
+                customer.setAddress(rs.getString(7));
+                customer.setEmail(rs.getString(8));
+                customer.setPassword(rs.getString(9));
+
+            }
+            return customer;
+        } catch (SQLException e) {
+            logger.error("Can't findEmail customer with id: " + email);
             return null;
         }
     }

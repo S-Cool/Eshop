@@ -58,7 +58,7 @@ public class CategoryDAO extends AbstractDAO {
             }
             return category;
         } catch (SQLException e) {
-            logger.error("Can't find category with id: " + id);
+            logger.error("Can't findEmail category with id: " + id);
             return null;
         }
     }
@@ -77,7 +77,7 @@ public class CategoryDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't find category with name: " + name);
+            logger.error("Can't findEmail category with name: " + name);
             return null;
         }
     }

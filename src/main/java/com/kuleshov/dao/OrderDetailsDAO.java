@@ -54,7 +54,7 @@ public class OrderDetailsDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't find orderDetails with id: " + id);
+            logger.error("Can't findEmail orderDetails with id: " + id);
             return null;
         }
     }

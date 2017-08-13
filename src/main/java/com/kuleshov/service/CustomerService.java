@@ -15,7 +15,7 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(int id) {
-        return customerDAO.findId(id);
+        return customerDAO.find(id);
     }
 
     public CustomerDTO saveCustomer(int id, String firstName, String lastName, Date age, int phone, String email, String city,
@@ -33,12 +33,12 @@ public class CustomerService {
 
         customerDAO.save(dto);
 
-        Customer customer = customerDAO.findId(id);
+        Customer customer = customerDAO.find(id);
         return new CustomerDTO(customer);
     }
 
-    public CustomerDTO login(int id, String password) {
-        Customer customer = customerDAO.findId(id);
+    public CustomerDTO login(String email, String password) {
+        Customer customer = customerDAO.findEmail(email);
         if (customer == null) {
             return null;
         }
