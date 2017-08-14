@@ -4,8 +4,7 @@ public enum View {
     LOGIN("login"),
     MAIN("main"),
     ERROR("error"),
-    CATEGORY("category"),
-    EMPLOYEE("employee");
+    USER("category");
 
     private String name;
 

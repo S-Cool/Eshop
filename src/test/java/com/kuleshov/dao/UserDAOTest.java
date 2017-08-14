@@ -1,21 +1,21 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Customer;
+import com.kuleshov.entity.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
 
-public class CustomerDAOTest {
+public class UserDAOTest {
 
-    private CustomerDAO customerDAO = new CustomerDAO();
-    private Customer inputValue = new Customer();
-    private Customer updateValue = new Customer();
+    private UserDAO userDAO = new UserDAO();
+    private User inputValue = new User();
+    private User updateValue = new User();
     private LocalDate date = LocalDate.of(2015, 8, 11);
 
 
     @Test
-    public void shouldSaveCustomer() {
+    public void shouldSaveUser() {
 
         //given
         inputValue.setId(1);
@@ -29,9 +29,9 @@ public class CustomerDAOTest {
         inputValue.setPassword("12345");
 
         //when
-        boolean save = customerDAO.save(inputValue);
-        Customer find = customerDAO.find(1);
-        boolean delete = customerDAO.delete(1);
+        boolean save = userDAO.save(inputValue);
+        User find = userDAO.find(1);
+        boolean delete = userDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
@@ -40,7 +40,7 @@ public class CustomerDAOTest {
     }
 
     @Test
-    public void shouldFindCustomer() {
+    public void shouldFindUser() {
 
         //given
         inputValue.setId(1);
@@ -54,9 +54,9 @@ public class CustomerDAOTest {
         inputValue.setPassword("12345");
 
         //when
-        boolean save = customerDAO.save(inputValue);
-        Customer find = customerDAO.find(1);
-        boolean delete = customerDAO.delete(1);
+        boolean save = userDAO.save(inputValue);
+        User find = userDAO.find(1);
+        boolean delete = userDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
@@ -65,7 +65,7 @@ public class CustomerDAOTest {
     }
 
     @Test
-    public void shouldFindCustomerByEmail() {
+    public void shouldFindUserByEmail() {
 
         //given
         inputValue.setId(1);
@@ -79,9 +79,9 @@ public class CustomerDAOTest {
         inputValue.setPassword("12345");
 
         //when
-        boolean save = customerDAO.save(inputValue);
-        Customer find = customerDAO.findEmail("Cool@mail.com");
-        boolean delete = customerDAO.delete(1);
+        boolean save = userDAO.save(inputValue);
+        User find = userDAO.findEmail("Cool@mail.com");
+        boolean delete = userDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
@@ -90,7 +90,7 @@ public class CustomerDAOTest {
     }
 
     @Test
-    public void shouldUpdateCustomer() {
+    public void shouldUpdateUser() {
 
         //given
         inputValue.setId(1);
@@ -114,10 +114,10 @@ public class CustomerDAOTest {
         updateValue.setPassword("Update12345");
 
         //when
-        boolean save = customerDAO.save(inputValue);
-        boolean update = customerDAO.update(updateValue);
-        Customer find = customerDAO.find(1);
-        boolean delete = customerDAO.delete(1);
+        boolean save = userDAO.save(inputValue);
+        boolean update = userDAO.update(updateValue);
+        User find = userDAO.find(1);
+        boolean delete = userDAO.delete(1);
 
         //then
         Assert.assertTrue(save);
@@ -127,7 +127,7 @@ public class CustomerDAOTest {
     }
 
     @Test
-    public void shouldDeleteCustomer() {
+    public void shouldDeleteUser() {
 
         //given
         inputValue.setId(3);
@@ -141,9 +141,9 @@ public class CustomerDAOTest {
         inputValue.setPassword("12345");
 
         //when
-        boolean save = customerDAO.save(inputValue);
-        boolean delete = customerDAO.delete(3);
-        Customer findAfterDelete = customerDAO.find(3);
+        boolean save = userDAO.save(inputValue);
+        boolean delete = userDAO.delete(3);
+        User findAfterDelete = userDAO.find(3);
 
         //then
         Assert.assertTrue(save);

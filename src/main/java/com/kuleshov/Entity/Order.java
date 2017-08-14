@@ -123,4 +123,47 @@ public class Order {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (customerCustomerId != order.customerCustomerId) return false;
+        if (orderId != order.orderId) return false;
+        if (employeeEmployeeName != null ? !employeeEmployeeName.equals(order.employeeEmployeeName) : order.employeeEmployeeName != null)
+            return false;
+        if (shipEmail != null ? !shipEmail.equals(order.shipEmail) : order.shipEmail != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orderId;
+        result = 31 * result + customerCustomerId;
+        result = 31 * result + (employeeEmployeeName != null ? employeeEmployeeName.hashCode() : 0);
+        result = 31 * result + (shipEmail != null ? shipEmail.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", customerCustomerId=" + customerCustomerId +
+                ", employeeEmployeeName='" + employeeEmployeeName + '\'' +
+                ", orderDate=" + orderDate +
+                ", shipDate=" + shipDate +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", delivery='" + delivery + '\'' +
+                ", shipFirstName='" + shipFirstName + '\'' +
+                ", shipLastName='" + shipLastName + '\'' +
+                ", shipPhone=" + shipPhone +
+                ", shipCity='" + shipCity + '\'' +
+                ", shipAddress='" + shipAddress + '\'' +
+                ", shipEmail='" + shipEmail + '\'' +
+                '}';
+    }
 }

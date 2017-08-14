@@ -1,11 +1,11 @@
 package com.kuleshov.web.response;
 
-import com.kuleshov.entity.Customer;
+import com.kuleshov.entity.User;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-public class CustomerDTO implements Serializable {
+public class UserDTO implements Serializable {
 
     private int id;
     private String firstName;
@@ -18,16 +18,16 @@ public class CustomerDTO implements Serializable {
     private String password;
 
 
-    public CustomerDTO(Customer customer) {
-        id = customer.getId();
-        firstName = customer.getFirstName();
-        lastName = customer.getLastName();
-        age = customer.getAge();
-        phone = customer.getPhone();
-        email = customer.getEmail();
-        city = customer.getCity();
-        address = customer.getAddress();
-        password = customer.getPassword();
+    public UserDTO(User user) {
+        id = user.getId();
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
+        age = user.getAge();
+        phone = user.getPhone();
+        email = user.getEmail();
+        city = user.getCity();
+        address = user.getAddress();
+        password = user.getPassword();
     }
 
     public int getId() {

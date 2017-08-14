@@ -1,18 +1,14 @@
 package com.kuleshov.dao;
 
-import com.kuleshov.entity.Customer;
-import com.kuleshov.entity.Employee;
+import com.kuleshov.entity.User;
 import com.kuleshov.entity.Order;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class OrderDAOTest {
 
-    private CustomerDAO customerDAO = new CustomerDAO();
-    private Customer customer = new Customer();
-
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    private Employee employee = new Employee();
+    private UserDAO userDAO = new UserDAO();
+    private User user = new User();
 
     private OrderDAO orderDAO = new OrderDAO();
     private Order inputValue = new Order();
@@ -22,18 +18,15 @@ public class OrderDAOTest {
     public void shouldSaveOrder() {
 
         //given
-        customer.setId(1);
-        customer.setFirstName("Cool");
-        customer.setLastName("Sergei");
-        customer.setAge(new java.sql.Date(2017, 12, 30));
-        customer.setPhone(5555555);
-        customer.setCity("City");
-        customer.setAddress("Address");
-        customer.setEmail("Cool@mail.com");
-        customer.setPassword("12345");
-
-        employee.setName("Peter");
-        employee.setPassword("pass321");
+        user.setId(1);
+        user.setFirstName("Cool");
+        user.setLastName("Sergei");
+        user.setAge(new java.sql.Date(2017, 12, 30));
+        user.setPhone(5555555);
+        user.setCity("City");
+        user.setAddress("Address");
+        user.setEmail("Cool@mail.com");
+        user.setPassword("12345");
 
         inputValue.setOrderId(1);
         inputValue.setCustomerCustomerId(1);
@@ -50,19 +43,15 @@ public class OrderDAOTest {
         inputValue.setShipEmail("mail");
 
         //when
-        boolean saveCustomer = customerDAO.save(customer);
-        boolean saveEmployee = employeeDAO.save(employee);
+        boolean saveCustomer = userDAO.save(user);
         boolean save = orderDAO.save(inputValue);
         boolean delete = orderDAO.delete(1);
-        boolean deleteEmployee = employeeDAO.delete("Peter");
-        boolean deleteCustomer = customerDAO.delete(1);
+        boolean deleteCustomer = userDAO.delete(1);
 
         //then
         Assert.assertTrue(saveCustomer);
-        Assert.assertTrue(saveEmployee);
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
-        Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
     }
 
@@ -70,18 +59,15 @@ public class OrderDAOTest {
     public void shouldFindOrder() {
         
         //given
-        customer.setId(3);
-        customer.setFirstName("Cool");
-        customer.setLastName("Sergei");
-        customer.setAge(new java.sql.Date(2017, 12, 30));
-        customer.setPhone(5555555);
-        customer.setCity("City");
-        customer.setAddress("Address");
-        customer.setEmail("Cool@mail.com");
-        customer.setPassword("12345");
-
-        employee.setName("Jon");
-        employee.setPassword("pass321");
+        user.setId(3);
+        user.setFirstName("Cool");
+        user.setLastName("Sergei");
+        user.setAge(new java.sql.Date(2017, 12, 30));
+        user.setPhone(5555555);
+        user.setCity("City");
+        user.setAddress("Address");
+        user.setEmail("Cool@mail.com");
+        user.setPassword("12345");
 
         inputValue.setOrderId(3);
         inputValue.setCustomerCustomerId(3);
@@ -98,21 +84,17 @@ public class OrderDAOTest {
         inputValue.setShipEmail("mail");
 
         //when
-        boolean saveCustomer = customerDAO.save(customer);
-        boolean saveEmployee = employeeDAO.save(employee);
+        boolean saveCustomer = userDAO.save(user);
         boolean save = orderDAO.save(inputValue);
         Order find = orderDAO.find(3);
         boolean delete = orderDAO.delete(3);
-        boolean deleteEmployee = employeeDAO.delete("Jon");
-        boolean deleteCustomer = customerDAO.delete(3);
+        boolean deleteCustomer = userDAO.delete(3);
 
         //then
         Assert.assertTrue(saveCustomer);
-        Assert.assertTrue(saveEmployee);
         Assert.assertTrue(save);
         Assert.assertEquals(inputValue, find);
         Assert.assertTrue(delete);
-        Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
     }
 
@@ -120,18 +102,15 @@ public class OrderDAOTest {
     public void shouldUpdateOrder() {
 
         //given
-        customer.setId(4);
-        customer.setFirstName("Cool");
-        customer.setLastName("Sergei");
-        customer.setAge(new java.sql.Date(2017, 12, 30));
-        customer.setPhone(5555555);
-        customer.setCity("City");
-        customer.setAddress("Address");
-        customer.setEmail("Cool@mail.com");
-        customer.setPassword("12345");
-
-        employee.setName("Jenny");
-        employee.setPassword("pass321");
+        user.setId(4);
+        user.setFirstName("Cool");
+        user.setLastName("Sergei");
+        user.setAge(new java.sql.Date(2017, 12, 30));
+        user.setPhone(5555555);
+        user.setCity("City");
+        user.setAddress("Address");
+        user.setEmail("Cool@mail.com");
+        user.setPassword("12345");
 
         inputValue.setOrderId(4);
         inputValue.setCustomerCustomerId(4);
@@ -162,21 +141,17 @@ public class OrderDAOTest {
         updateValue.setShipEmail("newMail");
 
         //when
-        boolean saveCustomer = customerDAO.save(customer);
-        boolean saveEmployee = employeeDAO.save(employee);
+        boolean saveCustomer = userDAO.save(user);
         boolean save = orderDAO.save(inputValue);
         boolean update = orderDAO.update(updateValue);
         boolean delete = orderDAO.delete(4);
-        boolean deleteEmployee = employeeDAO.delete("Jenny");
-        boolean deleteCustomer = customerDAO.delete(4);
+        boolean deleteCustomer = userDAO.delete(4);
 
         //then
         Assert.assertTrue(saveCustomer);
-        Assert.assertTrue(saveEmployee);
         Assert.assertTrue(save);
         Assert.assertTrue(update);
         Assert.assertTrue(delete);
-        Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
     }
 
@@ -184,18 +159,15 @@ public class OrderDAOTest {
     public void shouldDeleteOrder() {
 
         //given
-        customer.setId(2);
-        customer.setFirstName("Cool");
-        customer.setLastName("Sergei");
-        customer.setAge(new java.sql.Date(2017, 12, 30));
-        customer.setPhone(5555555);
-        customer.setCity("City");
-        customer.setAddress("Address");
-        customer.setEmail("Cool@mail.com");
-        customer.setPassword("12345");
-
-        employee.setName("Steve");
-        employee.setPassword("pass321");
+        user.setId(2);
+        user.setFirstName("Cool");
+        user.setLastName("Sergei");
+        user.setAge(new java.sql.Date(2017, 12, 30));
+        user.setPhone(5555555);
+        user.setCity("City");
+        user.setAddress("Address");
+        user.setEmail("Cool@mail.com");
+        user.setPassword("12345");
 
         inputValue.setOrderId(2);
         inputValue.setCustomerCustomerId(2);
@@ -212,19 +184,15 @@ public class OrderDAOTest {
         inputValue.setShipEmail("mail");
 
         //when
-        boolean saveCustomer = customerDAO.save(customer);
-        boolean saveEmployee = employeeDAO.save(employee);
+        boolean saveCustomer = userDAO.save(user);
         boolean save = orderDAO.save(inputValue);
         boolean delete = orderDAO.delete(2);
-        boolean deleteEmployee = employeeDAO.delete("Steve");
-        boolean deleteCustomer = customerDAO.delete(2);
+        boolean deleteCustomer = userDAO.delete(2);
 
         //then
         Assert.assertTrue(saveCustomer);
-        Assert.assertTrue(saveEmployee);
         Assert.assertTrue(save);
         Assert.assertTrue(delete);
-        Assert.assertTrue(deleteEmployee);
         Assert.assertTrue(deleteCustomer);
     }
 }

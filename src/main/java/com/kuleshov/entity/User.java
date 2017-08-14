@@ -2,7 +2,7 @@ package com.kuleshov.entity;
 
 import java.sql.Date;
 
-public class Customer {
+public class User {
 
     private int id;
     private String firstName;
@@ -82,23 +82,17 @@ public class Customer {
         this.password = password;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Customer customer = (Customer) o;
+        User user = (User) o;
 
-        if (id != customer.id) return false;
-        if (phone != customer.phone) return false;
-        if (!address.equals(customer.address)) return false;
-        if (!age.equals(customer.age)) return false;
-        if (!city.equals(customer.city)) return false;
-        if (!email.equals(customer.email)) return false;
-        if (!firstName.equals(customer.firstName)) return false;
-        if (!lastName.equals(customer.lastName)) return false;
-        if (!password.equals(customer.password)) return false;
+        if (id != user.id) return false;
+        if (!email.equals(user.email)) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
 
         return true;
     }
@@ -106,20 +100,15 @@ public class Customer {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + age.hashCode();
-        result = 31 * result + phone;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + email.hashCode();
-        result = 31 * result + city.hashCode();
-        result = 31 * result + address.hashCode();
-        result = 31 * result + password.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
