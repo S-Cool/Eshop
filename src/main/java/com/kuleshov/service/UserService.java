@@ -14,21 +14,21 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public User findCustomerById(int id) {
+    public User findUserById(int id) {
         return userDAO.find(id);
     }
 
-    public UserDTO saveCustomer(int id, String firstName, String lastName, Date age, int phone, String email, String city,
-                                    String address, String password) {
+    public UserDTO saveUser(int id, String firstName, String lastName, Date age, int phone, String email, String city,
+                            String address, String password) {
         User dto = new User();
         dto.setId(id);
         dto.setFirstName(firstName);
         dto.setLastName(lastName);
         dto.setAge(age);
         dto.setPhone(phone);
-        dto.setEmail(email);
         dto.setCity(city);
         dto.setAddress(address);
+        dto.setEmail(email);
         dto.setPassword(password);
 
         userDAO.save(dto);

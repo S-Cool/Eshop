@@ -9,9 +9,9 @@ public class User {
     private String lastName;
     private Date age;
     private int phone;
-    private String email;
     private String city;
     private String address;
+    private String email;
     private String password;
 
     public int getId() {

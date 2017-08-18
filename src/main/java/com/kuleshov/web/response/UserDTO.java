@@ -12,11 +12,10 @@ public class UserDTO implements Serializable {
     private String lastName;
     private Date age;
     private int phone;
-    private String email;
     private String city;
     private String address;
+    private String email;
     private String password;
-
 
     public UserDTO(User user) {
         id = user.getId();
@@ -24,9 +23,9 @@ public class UserDTO implements Serializable {
         lastName = user.getLastName();
         age = user.getAge();
         phone = user.getPhone();
-        email = user.getEmail();
         city = user.getCity();
         address = user.getAddress();
+        email = user.getEmail();
         password = user.getPassword();
     }
 
@@ -100,5 +99,27 @@ public class UserDTO implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDTO userDTO = (UserDTO) o;
+
+        if (id != userDTO.id) return false;
+        if (!email.equals(userDTO.email)) return false;
+        if (!password.equals(userDTO.password)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + email.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
     }
 }

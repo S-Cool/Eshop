@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(url = "/customer/findEmail", method = HttpMethod.GET)
     public ModelAndView findCustomerById(int id) {
         ModelAndView view = new ModelAndView(View.USER);
-        User user = customerService.findCustomerById(id);
+        User user = customerService.findUserById(id);
         view.addParameter("user", user);
         return view;
     }
@@ -29,7 +29,7 @@ public class UserController {
     @RequestMapping(url = "/customer/signUp", method = HttpMethod.POST)
     public ModelAndView signUp(int id, String firstName, String lastName, Date age, int phone, String email, String city, String address, String password) {
         ModelAndView view = new ModelAndView(View.MAIN);
-        UserDTO customer = customerService.saveCustomer(id, firstName, lastName, age, phone, email, city, address, password);
+        UserDTO customer = customerService.saveUser(id, firstName, lastName, age, phone, email, city, address, password);
         view.addParameter("user", customer);
         return view;
     }
