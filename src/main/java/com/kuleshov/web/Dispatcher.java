@@ -19,7 +19,7 @@ public class Dispatcher {
 
     private Dispatcher() {
         controllers = ImmutableList.<Controller>builder()
-                .add((Controller) new UserController(new UserService(new UserDAO())))
+                .add(new UserController(new UserService(new UserDAO())))
                 .build();
     }
 
