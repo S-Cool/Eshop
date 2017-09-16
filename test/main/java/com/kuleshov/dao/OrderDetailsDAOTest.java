@@ -1,5 +1,6 @@
-package com.kuleshov.dao;
+package main.java.com.kuleshov.dao;
 
+import com.kuleshov.dao.*;
 import com.kuleshov.entity.*;
 import org.junit.Assert;
 import org.junit.Test;

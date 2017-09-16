@@ -1,5 +1,8 @@
-package com.kuleshov.web;
+package main.java.com.kuleshov.web;
 
+import com.kuleshov.web.Dispatcher;
+import com.kuleshov.web.ModelAndView;
+import com.kuleshov.web.View;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,6 +1,7 @@
 package com.kuleshov.controller;
 
 import com.kuleshov.annotation.RequestMapping;
+import com.kuleshov.annotation.RequestParam;
 import com.kuleshov.entity.User;
 import com.kuleshov.service.UserService;
 import com.kuleshov.web.Controller;
@@ -20,7 +21,7 @@ public class UserController implements Controller {
     }
 
     @RequestMapping(url = "/user/findEmail", method = HttpMethod.GET)
-    public ModelAndView findCustomerById(int id) {
+    public ModelAndView findCustomerById(@RequestParam(name = "id") int id) {
         ModelAndView view = new ModelAndView(View.USER);
         User user = customerService.findUserById(id);
         view.addParameter("user", user);

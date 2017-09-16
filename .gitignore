@@ -1,5 +1,5 @@
 # folder settings
-WebProject.iml
+project.iml
 .idea/
 target/
 applog.txt

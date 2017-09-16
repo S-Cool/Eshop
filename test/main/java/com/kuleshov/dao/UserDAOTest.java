@@ -1,5 +1,6 @@
-package com.kuleshov.dao;
+package main.java.com.kuleshov.dao;
 
+import com.kuleshov.dao.UserDAO;
 import com.kuleshov.entity.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class UserDAOTest {
 
         //then
         Assert.assertTrue(save);
-        Assert.assertEquals(find,inputValue);
+        Assert.assertEquals(find, inputValue);
         Assert.assertTrue(delete);
     }
 

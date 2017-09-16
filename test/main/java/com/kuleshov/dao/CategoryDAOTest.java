@@ -1,5 +1,6 @@
-package com.kuleshov.dao;
+package main.java.com.kuleshov.dao;
 
+import com.kuleshov.dao.CategoryDAO;
 import com.kuleshov.entity.Category;
 import org.junit.Assert;
 import org.junit.Test;

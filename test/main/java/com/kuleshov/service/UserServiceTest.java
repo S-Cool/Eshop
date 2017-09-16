@@ -1,7 +1,8 @@
-package com.kuleshov.service;
+package main.java.com.kuleshov.service;
 
 import com.kuleshov.dao.UserDAO;
 import com.kuleshov.entity.User;
+import com.kuleshov.service.UserService;
 import com.kuleshov.web.response.UserDTO;
 import org.junit.Assert;
 import org.junit.Test;

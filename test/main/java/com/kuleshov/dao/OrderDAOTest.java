@@ -1,5 +1,7 @@
-package com.kuleshov.dao;
+package main.java.com.kuleshov.dao;
 
+import com.kuleshov.dao.OrderDAO;
+import com.kuleshov.dao.UserDAO;
 import com.kuleshov.entity.User;
 import com.kuleshov.entity.Order;
 import org.junit.Assert;
