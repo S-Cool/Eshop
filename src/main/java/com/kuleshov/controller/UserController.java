@@ -29,7 +29,9 @@ public class UserController implements Controller {
     }
 
     @RequestMapping(url = "/user/signUp", method = HttpMethod.POST)
-    public ModelAndView signUp(int id, String firstName, String lastName, Date age, int phone, String email, String city, String address, String password) {
+    public ModelAndView signUp(@RequestParam(name = "id") int id, @RequestParam(name = "firstName") String firstName, @RequestParam(name = "lastName") String lastName,
+                               @RequestParam(name = "age") Date age, @RequestParam(name = "phone") int phone, @RequestParam(name = "email") String email,
+                               @RequestParam(name = "city") String city, @RequestParam(name = "address") String address, @RequestParam(name = "password") String password) {
         ModelAndView view = new ModelAndView(View.MAIN);
         UserDTO customer = customerService.saveUser(id, firstName, lastName, age, phone, email, city, address, password);
         view.addParameter("user", customer);
@@ -37,7 +39,7 @@ public class UserController implements Controller {
     }
 
     @RequestMapping(url = "/user/login", method = HttpMethod.POST)
-    public ModelAndView login(String email, String password) {
+    public ModelAndView login(@RequestParam(name = "email") String email, @RequestParam(name = "password") String password) {
         ModelAndView view = new ModelAndView(View.LOGIN);
         UserDTO userDTO = customerService.login(email, password);
 
