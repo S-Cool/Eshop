@@ -2,6 +2,7 @@ package com.kuleshov.web;
 
 import com.google.common.collect.ImmutableList;
 import com.kuleshov.annotation.RequestMapping;
+import com.kuleshov.annotation.RequestParam;
 import com.kuleshov.controller.UserController;
 import com.kuleshov.dao.UserDAO;
 import com.kuleshov.exception.IllegalRequestException;
@@ -48,10 +49,17 @@ public class Dispatcher {
         stringParametersMap.forEach((k, v) -> parametersMap.put(k, v[0]));
         parametersMap.put("request", req);
 
+//        Arrays.stream(target.method.getParameters())
+//                .map(e -> parametersMap.get(e.getName()))
+//                .filter(Objects::nonNull)
+//                .forEach(e -> target.params.add(e));
+
         Arrays.stream(target.method.getParameters())
-                .map(e -> parametersMap.get(e.getName()))
+                .filter(e -> e.getDeclaredAnnotation(RequestParam.class) != null)
+                .map(e -> parametersMap.get(e.getDeclaredAnnotation(RequestParam.class).name()))
                 .filter(Objects::nonNull)
                 .forEach(e -> target.params.add(e));
+
     }
 
     private Target getTargetForInvoke(String requestedUrl, HttpMethod requestedHttpMethod) {
