@@ -49,4 +49,9 @@ public class UserController implements Controller {
         }
         return view;
     }
+
+    @RequestMapping(url = "/user/login", method = HttpMethod.GET)
+    public ModelAndView getLoginPage() {
+        return new ModelAndView(View.LOGIN);
+    }
 }
