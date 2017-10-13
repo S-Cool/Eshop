@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "userId";
-    private static final String LOGIN_REQUEST = "/users/login";
+    private static final String LOGIN_REQUEST = "/user/login";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,7 +31,7 @@ public class AuthenticationFilter implements Filter {
             filterChain.doFilter(req, resp);
         } else {
 //			req.getRequestDispatcher(LOGIN.getFullName()).forward(req, resp);
-            resp.sendRedirect("/users/login");
+            resp.sendRedirect("/user/login");
         }
     }
 
