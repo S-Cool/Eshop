@@ -46,9 +46,10 @@ public class UserDAO extends AbstractDAO {
             st.setLong(1, id);
 
             ResultSet rs = st.executeQuery();
-            User user = new User();
+            User user = null;
 
             while (rs.next()) {
+                user = new User();
                 user.setId(rs.getInt(1));
                 user.setFirstName(rs.getString(2));
                 user.setLastName(rs.getString(3));
@@ -58,23 +59,23 @@ public class UserDAO extends AbstractDAO {
                 user.setAddress(rs.getString(7));
                 user.setEmail(rs.getString(8));
                 user.setPassword(rs.getString(9));
-
             }
             return user;
         } catch (SQLException e) {
-            logger.error("Can't findEmail customer with id: " + id);
+            logger.error("Can't find customer with id: " + id);
             return null;
         }
     }
 
-    public User findEmail(String email) {
+    public User find(String email) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_EMAIL_QUERY)) {
             st.setString(1, email);
 
             ResultSet rs = st.executeQuery();
-            User user = new User();
+            User user = null;
 
             while (rs.next()) {
+                user = new User();
                 user.setId(rs.getInt(1));
                 user.setFirstName(rs.getString(2));
                 user.setLastName(rs.getString(3));
@@ -84,11 +85,10 @@ public class UserDAO extends AbstractDAO {
                 user.setAddress(rs.getString(7));
                 user.setEmail(rs.getString(8));
                 user.setPassword(rs.getString(9));
-
             }
             return user;
         } catch (SQLException e) {
-            logger.error("Can't findEmail customer with id: " + email);
+            logger.error("Can't find customer with id: " + email);
             return null;
         }
     }

@@ -41,9 +41,10 @@ public class OrderDetailsDAO extends AbstractDAO {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
+            OrderDetails orderDetails = null;
 
             while (rs.next()) {
-                OrderDetails orderDetails = new OrderDetails();
+                orderDetails = new OrderDetails();
                 orderDetails.setOrderDetailsId(rs.getInt(1));
                 orderDetails.setProductId(rs.getString(2));
                 orderDetails.setOrderId(rs.getInt(3));
@@ -54,7 +55,7 @@ public class OrderDetailsDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't findEmail orderDetails with id: " + id);
+            logger.error("Can't find orderDetails with id: " + id);
             return null;
         }
     }

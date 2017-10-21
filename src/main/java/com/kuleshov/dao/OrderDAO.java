@@ -50,9 +50,10 @@ public class OrderDAO extends AbstractDAO {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
+            Order order = null;
 
             while (rs.next()) {
-                Order order = new Order();
+                order = new Order();
                 order.setOrderId(rs.getInt(1));
                 order.setCustomerCustomerId(rs.getInt(2));
                 order.setEmployeeEmployeeName(rs.getString(3));
@@ -70,7 +71,7 @@ public class OrderDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't findEmail order with id: " + id);
+            logger.error("Can't find order with id: " + id);
             return null;
         }
     }

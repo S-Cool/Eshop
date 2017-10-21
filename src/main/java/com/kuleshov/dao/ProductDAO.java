@@ -38,13 +38,14 @@ public class ProductDAO extends AbstractDAO {
         }
     }
 
-    public Product findId(String id) {
+    public Product find(String id) {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
+            Product product = null;
 
             while (rs.next()) {
-                Product product = new Product();
+                product = new Product();
                 product.setProductId(rs.getString(1));
                 product.setProductName(rs.getString(2));
                 product.setQuantityInStock(rs.getInt(3));
@@ -56,7 +57,7 @@ public class ProductDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't findEmail product with ID: " + id);
+            logger.error("Can't find product with ID: " + id);
             return null;
         }
     }

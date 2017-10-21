@@ -49,16 +49,17 @@ public class CategoryDAO extends AbstractDAO {
             st.setLong(1, id);
 
             ResultSet rs = st.executeQuery();
-            Category category = new Category();
+            Category category = null;
 
             while (rs.next()) {
+                category = new Category();
                 category.setCategoryId(rs.getInt(1));
                 category.setCategoryName(rs.getString(2));
                 category.setCategoryDescription(rs.getString(3));
             }
             return category;
         } catch (SQLException e) {
-            logger.error("Can't findEmail category with id: " + id);
+            logger.error("Can't find category with id: " + id);
             return null;
         }
     }
@@ -67,9 +68,10 @@ public class CategoryDAO extends AbstractDAO {
         try (PreparedStatement st = connection.prepareStatement(SELECT_BY_NAME_QUERY)) {
             st.setString(1, name);
             ResultSet rs = st.executeQuery();
+            Category category = null;
 
             while (rs.next()) {
-                Category category = new Category();
+                category = new Category();
                 category.setCategoryId(rs.getInt(1));
                 category.setCategoryName(rs.getString(2));
                 category.setCategoryDescription(rs.getString(3));
@@ -77,7 +79,7 @@ public class CategoryDAO extends AbstractDAO {
             }
             return null;
         } catch (SQLException e) {
-            logger.error("Can't findEmail category with name: " + name);
+            logger.error("Can't find category with name: " + name);
             return null;
         }
     }
