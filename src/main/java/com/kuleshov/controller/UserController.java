@@ -20,7 +20,12 @@ public class UserController implements Controller {
         this.customerService = customerService;
     }
 
-    @RequestMapping(url = "/user/findEmail", method = HttpMethod.GET)
+    @RequestMapping(url = "/", method = HttpMethod.GET)
+    public ModelAndView main() {
+        return new ModelAndView(View.MAIN);
+    }
+
+    @RequestMapping(url = "/user/find", method = HttpMethod.GET)
     public ModelAndView findCustomerById(@RequestParam(name = "id") int id) {
         ModelAndView view = new ModelAndView(View.USER);
         User user = customerService.findUserById(id);
@@ -32,9 +37,15 @@ public class UserController implements Controller {
     public ModelAndView signUp(@RequestParam(name = "id") int id, @RequestParam(name = "firstName") String firstName, @RequestParam(name = "lastName") String lastName,
                                @RequestParam(name = "age") Date age, @RequestParam(name = "phone") int phone, @RequestParam(name = "email") String email,
                                @RequestParam(name = "city") String city, @RequestParam(name = "address") String address, @RequestParam(name = "password") String password) {
-        ModelAndView view = new ModelAndView(View.MAIN);
+        ModelAndView view = new ModelAndView(View.REGISTRATION);
         UserDTO customer = customerService.saveUser(id, firstName, lastName, age, phone, email, city, address, password);
         view.addParameter("user", customer);
+        return view;
+    }
+
+    @RequestMapping(url = "/user/signUp", method = HttpMethod.GET)
+    public ModelAndView signUpGet() {
+        ModelAndView view = new ModelAndView(View.REGISTRATION);
         return view;
     }
 
