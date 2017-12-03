@@ -38,7 +38,7 @@ public class UserService {
     }
 
     public UserDTO login(String email, String password) {
-        User user = userDAO.findEmail(email);
+        User user = userDAO.find(email);
         if (user == null) {
             return null;
         }
