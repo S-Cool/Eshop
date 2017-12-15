@@ -21,18 +21,19 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        boolean isUserLoginned = session != null
-                && session.getAttribute(USER_ID) != null;
+        filterChain.doFilter(req, resp);
 
-        String loginURI = req.getContextPath() + LOGIN_REQUEST;
-        boolean isLoginRequest = req.getRequestURI().equals(loginURI);
-
-        if (isUserLoginned || isLoginRequest) {
-            filterChain.doFilter(req, resp);
-        } else {
-//			req.getRequestDispatcher(LOGIN.getFullName()).forward(req, resp);
-            resp.sendRedirect("/user/login");
-        }
+//        boolean isUserLoginned = session != null && session.getAttribute(USER_ID) != null;
+//
+//        String loginURI = req.getContextPath() + LOGIN_REQUEST;
+//        boolean isLoginRequest = req.getRequestURI().equals(loginURI);
+//
+//        if (isUserLoginned || isLoginRequest) {
+//            filterChain.doFilter(req, resp);
+//        } else {
+////			req.getRequestDispatcher(LOGIN.getFullName()).forward(req, resp);
+//            resp.sendRedirect("/user/login");
+//        }
     }
 
     @Override
