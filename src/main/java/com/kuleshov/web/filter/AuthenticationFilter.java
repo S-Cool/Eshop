@@ -1,6 +1,6 @@
 package com.kuleshov.web.filter;
 
-        import javax.servlet.*;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,20 +20,9 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         HttpSession session = req.getSession(false);
-
+        System.out.println("Entering Filter");
         filterChain.doFilter(req, resp);
-
-//        boolean isUserLoginned = session != null && session.getAttribute(USER_ID) != null;
-//
-//        String loginURI = req.getContextPath() + LOGIN_REQUEST;
-//        boolean isLoginRequest = req.getRequestURI().equals(loginURI);
-//
-//        if (isUserLoginned || isLoginRequest) {
-//            filterChain.doFilter(req, resp);
-//        } else {
-////			req.getRequestDispatcher(LOGIN.getFullName()).forward(req, resp);
-//            resp.sendRedirect("/user/login");
-//        }
+        System.out.println("Exiting HelloWorldFilter");
     }
 
     @Override

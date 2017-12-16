@@ -7,19 +7,9 @@
 </head>
 <body>
 
-<p>Hello User!</p>
+<h1>Hello User!</h1>
 <p>Go to <a href="/user/login"> authorization page</a></p>
 <p>Go to <a href="/user/signUp"> registration page</a></p>
-<%--<div class="login">--%>
-    <%--<h1>Приветствую тебя, ${sessionScope.userName}</h1>--%>
-<%--</div>--%>
-<%--<div>--%>
-    <%--<h1>Пользователи</h1>--%>
-    <%--<c:forEach var="usr" items="${users}">--%>
-        <%--<p>${usr.name}</p>--%>
-    <%--</c:forEach>--%>
-<%--</div>--%>
-
 </body>
 
 </html>
