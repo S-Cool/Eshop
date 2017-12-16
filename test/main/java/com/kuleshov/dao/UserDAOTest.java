@@ -81,7 +81,7 @@ public class UserDAOTest {
 
         //when
         boolean save = userDAO.save(inputValue);
-        User find = userDAO.findEmail("Cool@mail.com");
+        User find = userDAO.find("Cool@mail.com");
         boolean delete = userDAO.delete(1);
 
         //then

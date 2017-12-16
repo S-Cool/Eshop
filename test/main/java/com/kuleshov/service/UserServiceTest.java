@@ -97,8 +97,8 @@ public class UserServiceTest {
         UserDTO userDTO = new UserDTO(user);
 
         //when
-        Mockito.when(userDAO.findEmail("Cool@mail.com")).thenReturn(user);
-        Mockito.when(userDAO.findEmail("John@mail.com")).thenReturn(null);
+        Mockito.when(userDAO.find("Cool@mail.com")).thenReturn(user);
+        Mockito.when(userDAO.find("John@mail.com")).thenReturn(null);
         UserDTO actualTrueUser = userService.login("Cool@mail.com", "12345");
         UserDTO actualFalseUser = userService.login("John@mail.com", "12345");
 
@@ -107,8 +107,8 @@ public class UserServiceTest {
         Assert.assertNull(actualFalseUser);
 
         //verify
-        Mockito.verify(userDAO, Mockito.times(1)).findEmail("Cool@mail.com");
-        Mockito.verify(userDAO, Mockito.times(1)).findEmail("John@mail.com");
+        Mockito.verify(userDAO, Mockito.times(1)).find("Cool@mail.com");
+        Mockito.verify(userDAO, Mockito.times(1)).find("John@mail.com");
     }
 
 }

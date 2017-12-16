@@ -35,7 +35,7 @@ public class ProductDAOTest {
         //when
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
-        Product find = productDAO.findId("id123");
+        Product find = productDAO.find("id123");
         boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
@@ -66,7 +66,7 @@ public class ProductDAOTest {
         //when
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
-        Product find = productDAO.findId("id123");
+        Product find = productDAO.find("id123");
         boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
@@ -106,7 +106,7 @@ public class ProductDAOTest {
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
         boolean update = productDAO.update(updateValue);
-        Product find = productDAO.findId("id123");
+        Product find = productDAO.find("id123");
         boolean delete = productDAO.delete("id123");
         boolean deleteCategory = categoryDAO.delete("Tech");
 
@@ -139,7 +139,7 @@ public class ProductDAOTest {
         boolean saveCategory = categoryDAO.save(category);
         boolean save = productDAO.save(inputValue);
         boolean delete = productDAO.delete("id123");
-        Product findAfterDelete = productDAO.findId("id123");
+        Product findAfterDelete = productDAO.find("id123");
         boolean deleteCategory = categoryDAO.delete("NewTech");
 
         //then
